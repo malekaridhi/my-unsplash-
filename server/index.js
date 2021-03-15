@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const fs = require('fs');
+const ImagesRouter = require ("./routers/img")
 require("dotenv").config();
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -14,6 +15,7 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+app.use("/images", ImagesRouter);
 mongoose.connect(
   process.env.MONGODB_CONNECTION_STRING,
   {
