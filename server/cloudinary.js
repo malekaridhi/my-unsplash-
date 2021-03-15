@@ -1,3 +1,4 @@
+require("dotenv").config();
 const cloudinary = require("cloudinary")
 cloudinary.config({
     cloud_name : 'dvl9yijld',
