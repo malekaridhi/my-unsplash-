@@ -14,15 +14,18 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
+mongoose.connect(
+  process.env.MONGODB_CONNECTION_STRING,
+  {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-  }, (err) => {
+  },
+  (err) => {
     if (err) throw err;
-    console.log("MONGO connected on port 5050")
+    console.log("MONGO connected on port 8000");
   }
-  );
+)
 
-  const PORT = process.env.PORT || 5050;
+  const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`the server is running on port : ${PORT}`));
