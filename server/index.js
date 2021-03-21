@@ -6,7 +6,6 @@ const path = require("path");
 const fs = require('fs');
 const cloud = require("./cloudinary");
 const multe =require("./multer")
-const ImagesRouter = require ("./routers/img")
 const image = require ("./model/image")
 require("dotenv").config();
 const app = express();
@@ -18,7 +17,8 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
-app.use("/Images", ImagesRouter);
+//app.use("/Images", ImagesRouter);
+app.use('/images',express.static('images'))
 mongoose.connect(
   process.env.MONGODB_CONNECTION_STRING,
   {
@@ -58,7 +58,7 @@ app.get ('/Images',(req,res)=>{
     res.json(images)
   })
 }) */
-app.delete ('/delete',(req,res)=>{
+app.delete ('/Images',(req,res)=>{
  console.log(req.body)
   image.deleteOne({ Name:'a.jpg'}).then(images=>{
     res.json(images)
