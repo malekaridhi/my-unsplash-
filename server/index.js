@@ -30,6 +30,45 @@ mongoose.connect(
     console.log("MONGO connected on port 8000");
   }
 )
-
+app.post('/Images', multerC , async (req,res)=>{
+  console.log(req.files[0])
+  const result =await cloudinaryC.uploads(req.files[0].path)
+  const imageinfo ={
+    Name : req.files[0].originalname,
+    url: result.url
+  }
+  const pics= new image (imageinfo)
+  pics.save()
+  fs.unlinkSync(req.files[0].path)
+  res.json({
+    msg:'done',
+    pics:pics 
+  })
+})
+app.get ('/Images',(req,res)=>{
+  
+  image.find().then(images=>{
+    res.json(images)
+  })
+})
+/**app.delete ('/Images',(req,res)=>{
+ console.log(req.body)
+  image.deleteOne({ Name:req.params.Name}).then(images=>{
+    res.json(images)
+  })
+}) */
+app.delete ('/Images',(req,res)=>{
+ console.log(req.body)
+  image.deleteOne({ Name:'a.jpg'}).then(images=>{
+    res.json(images)
+  })
+})
+app.post ('/search',(req,res)=>{
+  const pic=req.body
+  console.log(req.body)
+  image.findOne({ Name:'quote.jpg'}).then(images=>{
+    res.json(images)
+  })
+})
   const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`the server is running on port : ${PORT}`));
