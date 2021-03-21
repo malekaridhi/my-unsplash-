@@ -1,17 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const image = require ("./model/image")
+const multe =require("./multer")
+const cloud = require("./cloudinary");
 const cors = require("cors");
 const path = require("path");
 const fs = require('fs');
-const cloud = require("./cloudinary");
-const multe =require("./multer")
-const image = require ("./model/image")
+
+
+
 require("dotenv").config();
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}))
+
 app.use(
   cors({
     origin: "http://localhost:3000",
