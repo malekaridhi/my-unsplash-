@@ -7,6 +7,7 @@ const fs = require('fs');
 const cloud = require("../cloudinary");
 const multe =require("../multer")
 const ImagesRouter = require ("./routers/img")
+const image = require ("./model/image")
 require("dotenv").config();
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -30,9 +31,9 @@ mongoose.connect(
     console.log("MONGO connected on port 8000");
   }
 )
-app.post('/Images', multerC , async (req,res)=>{
+app.post('/Images', multe , async (req,res)=>{
   console.log(req.files[0])
-  const result =await cloudinaryC.uploads(req.files[0].path)
+  const result =await cloud.uploads(req.files[0].path)
   const imageinfo ={
     Name : req.files[0].originalname,
     url: result.url
