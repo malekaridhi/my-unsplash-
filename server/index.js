@@ -58,7 +58,7 @@ app.get ('/Images',(req,res)=>{
     res.json(images)
   })
 }) */
-app.delete ('/Images',(req,res)=>{
+app.delete ('/delete',(req,res)=>{
  console.log(req.body)
   image.deleteOne({ Name:'a.jpg'}).then(images=>{
     res.json(images)
