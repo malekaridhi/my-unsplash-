@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const fs = require('fs');
-const cloud = require("../cloudinary");
-const multe =require("../multer")
+const cloud = require("./cloudinary");
+const multe =require("./multer")
 const ImagesRouter = require ("./routers/img")
 const image = require ("./model/image")
 require("dotenv").config();
